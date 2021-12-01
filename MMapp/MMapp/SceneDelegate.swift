@@ -17,20 +17,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
 
-        window?.rootViewController = ViewController()
+        window?.rootViewController = MapViewController()
         window?.makeKeyAndVisible()
         
         let navBar = UITabBarController()       //The navigation bar that is used to navigate b/w Map|Music|Books|Settings
-        let navBarVCs = [UINavigationController(rootViewController: ViewController())]
+        let navBarVCs = [UINavigationController(rootViewController: MapViewController()),
+                         UINavigationController(rootViewController: MusicViewController()),
+                         UINavigationController(rootViewController: ViewController()),
+                         UINavigationController(rootViewController: ViewController())]
+            
         
-        let navBarItems = [UITabBarItem (title: "Map", image: UIImage(systemName: "map.fill"), tag: 0)]
+        let navBarItems = [UITabBarItem (title: "Map",        image: UIImage(systemName: "map.fill"), tag: 0),
+                           UITabBarItem (title: "Music",      image: UIImage(systemName: "music.note"), tag: 1),
+                           UITabBarItem (title: "Audiobooks", image: UIImage(systemName: "book.fill"), tag: 2),
+                           UITabBarItem (title: "Settings",   image: UIImage(systemName: "gear"), tag: 3)]
         
         navBar.viewControllers = navBarVCs.enumerated().map({ (index, navController) -> UINavigationController in
             navController.tabBarItem = navBarItems[index]
             return navController
         })
         
-        navBar.selectedIndex = 0
+        navBar.tabBar.backgroundColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.2)
+        navBar.tabBar.tintColor = .black
+        navBar.tabBar.barTintColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 1)
+        navBar.selectedIndex = 1
+        print (navBar.tabBar.bounds.size.height)
         window?.rootViewController = navBar
         window?.makeKeyAndVisible()
     }
@@ -65,4 +76,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
+
 
