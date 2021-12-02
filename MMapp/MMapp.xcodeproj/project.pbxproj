@@ -24,6 +24,7 @@
 		555689862756B34D005EE8A6 /* PlaylistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 555689852756B34D005EE8A6 /* PlaylistViewController.swift */; };
 		5556898827570A08005EE8A6 /* PlaylistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556898727570A08005EE8A6 /* PlaylistViewModel.swift */; };
 		5556898B27570AF8005EE8A6 /* DeviceMediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556898A27570AF8005EE8A6 /* DeviceMediaService.swift */; };
+		5556898D2757DD12005EE8A6 /* MusicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5556898C2757DD12005EE8A6 /* MusicViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		555689852756B34D005EE8A6 /* PlaylistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewController.swift; sourceTree = "<group>"; };
 		5556898727570A08005EE8A6 /* PlaylistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistViewModel.swift; sourceTree = "<group>"; };
 		5556898A27570AF8005EE8A6 /* DeviceMediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceMediaService.swift; sourceTree = "<group>"; };
+		5556898C2757DD12005EE8A6 /* MusicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				5556897927515552005EE8A6 /* MapViewModel.swift */,
 				5556898727570A08005EE8A6 /* PlaylistViewModel.swift */,
+				5556898C2757DD12005EE8A6 /* MusicViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				5556897F2753F05C005EE8A6 /* MusicViewController.swift in Sources */,
 				5556897A27515552005EE8A6 /* MapViewModel.swift in Sources */,
 				5556898227553A62005EE8A6 /* UIViewPlusConstraints.swift in Sources */,
+				5556898D2757DD12005EE8A6 /* MusicViewModel.swift in Sources */,
 				55183FD527417BFF005D6E46 /* AppDelegate.swift in Sources */,
 				555689862756B34D005EE8A6 /* PlaylistViewController.swift in Sources */,
 				5556897D27515681005EE8A6 /* Route.swift in Sources */,

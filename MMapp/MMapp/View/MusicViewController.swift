@@ -24,7 +24,7 @@ class MusicViewController: UIViewController {
     let playlistsButton = UIButton()
     let showButton = UIButton()
     
-    
+    let viewModel = MusicViewModel()
      
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -32,12 +32,6 @@ class MusicViewController: UIViewController {
         
         setupUI()
         changeMusicImage(imageURL: "JinxTestImage.jpeg")
-        
-        let mediaItems = MPMediaQuery.playlists().collections
-        
-        for item in mediaItems! {
-            print(item.value(forProperty: MPMediaPlaylistPropertyName))
-        }
     }
     
     // MARK: Action
@@ -46,7 +40,39 @@ class MusicViewController: UIViewController {
     }
     
     @objc func showPlaylists() {
-        present(UINavigationController(rootViewController: PlaylistViewController()), animated: true, completion: nil)
+        let vc = PlaylistViewController()
+        vc.returnedSongs = { [weak self] (songs) in     //Everything in this bracket is executed after its called in PlaylistViewController
+            self?.viewModel.setQueue(songs)
+        }
+        present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+    }
+    
+    @objc func showCurrentQueue() {
+        
+        viewModel.printCurrentQueue()
+    }
+    
+    @objc func playPause() {
+        guard !viewModel.isQueueEmpty else {
+            musicTitleLabel.text = "Select Playlist First"
+            return
+        }
+        viewModel.handlePlayPause()
+        musicTitleLabel.text = viewModel.currentTitle
+        musicImageView.image = viewModel.currentImage
+
+        playPauseButton.setImage(UIImage(systemName: viewModel.isPlaying ? "pause.fill" : "play.fill"), for: .normal)
+
+    }
+    @objc func nxt() {
+        viewModel.skipSong()
+        musicTitleLabel.text = viewModel.currentTitle
+        musicImageView.image = viewModel.currentImage
+    }
+    @objc func prev() {
+        viewModel.prevSong()
+        musicTitleLabel.text = viewModel.currentTitle
+        musicImageView.image = viewModel.currentImage
     }
     
     
@@ -115,7 +141,12 @@ class MusicViewController: UIViewController {
         stackView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: padCnst, leading: padCnst, bottom: padCnst, trailing: padCnst)
         stackView.isLayoutMarginsRelativeArrangement = true
         
+        nxtButton.addTarget(self, action: #selector(nxt), for: .touchUpInside)
+        prevButton.addTarget(self, action: #selector(prev), for: .touchUpInside)
+        playPauseButton.addTarget(self, action: #selector(playPause), for: .touchUpInside)
         playlistsButton.addTarget(self, action: #selector(showPlaylists), for: .touchUpInside)
+        showButton.addTarget(self, action: #selector(showCurrentQueue), for: .touchUpInside)
+        
         
     }
     

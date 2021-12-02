@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MediaPlayer
 
 class PlaylistViewController: UITableViewController {
     
@@ -13,6 +14,7 @@ class PlaylistViewController: UITableViewController {
     
     let playlistNames: [String]
     
+    var returnedSongs: (([MPMediaItem]) -> Void)?    //closure (a function and a property)
 
     init() {
         viewModel = PlaylistViewModel(deviceMediaService: DeviceMediaService())
@@ -38,9 +40,14 @@ class PlaylistViewController: UITableViewController {
         cell.textLabel?.text = playlistNames[indexPath.row]
         return cell
     }
-    
-    
-    
-    
-
+   
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        dismiss(animated: true) { [weak self] in
+            guard let self = self else { return }
+            if let returnedSongs = self.returnedSongs {        //checks to see if it has been instantiated in musicviewcontroller
+                returnedSongs(self.viewModel.getAllSongsInAPlaylist(self.playlistNames[indexPath.row]))
+            }
+        }
+    }
 }

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let navBar = UITabBarController()       //The navigation bar that is used to navigate b/w Map|Music|Books|Settings
         let navBarVCs = [UINavigationController(rootViewController: MapViewController()),
-                         UINavigationController(rootViewController: MusicViewController()),
+                         MusicViewController(),
                          UINavigationController(rootViewController: ViewController()),
                          UINavigationController(rootViewController: ViewController())]
             
@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                            UITabBarItem (title: "Audiobooks", image: UIImage(systemName: "book.fill"), tag: 2),
                            UITabBarItem (title: "Settings",   image: UIImage(systemName: "gear"), tag: 3)]
         
-        navBar.viewControllers = navBarVCs.enumerated().map({ (index, navController) -> UINavigationController in
+        navBar.viewControllers = navBarVCs.enumerated().map({ (index, navController) -> UIViewController in
             navController.tabBarItem = navBarItems[index]
             return navController
         })

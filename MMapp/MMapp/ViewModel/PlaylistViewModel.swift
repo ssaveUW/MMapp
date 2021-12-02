@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import MediaPlayer
 
 class PlaylistViewModel{
+
     
     private let deviceMediaService: DeviceMediaService   //Dependency Injection
     
@@ -17,6 +19,10 @@ class PlaylistViewModel{
     
     func getAllPlaylistNames() -> [String] {
         return deviceMediaService.getAllPlaylistNames()
+    }
+    
+    func getAllSongsInAPlaylist(_ playlistName: String) -> [MPMediaItem] {
+        return deviceMediaService.getAllSongsInAPlaylist(playlistName)
     }
     
 }
